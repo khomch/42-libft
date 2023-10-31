@@ -6,7 +6,7 @@
 #    By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 16:43:19 by akhomche          #+#    #+#              #
-#    Updated: 2023/10/31 15:11:17 by akhomche         ###   ########.fr        #
+#    Updated: 2023/10/31 17:19:16 by akhomche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,9 @@ SRC = ft_isalpha \
 	ft_isdigit \
 	ft_isalnum \
 	ft_isascii \
-	ft_isprint
+	ft_isprint \
+	ft_strlen \
+	ft_memset
 SRCS = $(addsuffix .c, $(SRC))
 OBJS = $(addsuffix .o, $(SRC))
 .c.o: $(SRCS) $(BONUS_SRCS)
