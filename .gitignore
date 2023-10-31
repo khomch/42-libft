@@ -1,0 +1,7 @@
+testing
+
+.vscode
+
+*.o
+*.out
+*.a
