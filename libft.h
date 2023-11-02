@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:07:01 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/01 15:57:31 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/02 09:57:46 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void	*ft_memset(void *str, int c, size_t len);
 void	ft_bzero(void *str, size_t len);
 void	*ft_memcpy(void *to, void *from, size_t len);
 void	*ft_memmove(void *dest, const void *src, size_t len);
+size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 
 #endif

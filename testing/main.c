@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:15:31 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/01 16:05:02 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:13:46 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -300,6 +300,29 @@ void test_ft_memmove(void)
 		printf("❌ Try again: expected \"%s\", got \"%s\".\n", srcdest, ftsrcdest);
 }
 
+void test_ft_strlcpy(void)
+{
+	printf("\n\n=========== ft_strlcpy ============\n\n");
+
+	char string[] = "Hello there, Venus";
+	char buffer1[19];
+	char buffer2[19];
+	char buffer3[19];
+
+	if (ft_strlcpy(buffer1,string,19) == 18 && !strcmp(buffer1, string))
+		printf("✅ OK: expected \"%s\", got \"%s\"\n", buffer1,string);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", buffer1,string);
+	if (ft_strlcpy(buffer2,string,10) == 18 && !strcmp(buffer2, "Hello the"))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "Hello the", buffer2);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "Hello the", buffer2);
+	if (ft_strlcpy(buffer3,string,0) == 18 && !strcmp(buffer3, ""))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "", buffer3);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "", buffer3);
+}
+
 int main()
 {
 	printf("\n======== START ========\n");
@@ -313,6 +336,7 @@ int main()
 	test_ft_bzero();
 	test_ft_memcpy();
 	test_ft_memmove();
+	test_ft_strlcpy();
 
 	return (0);
 }
