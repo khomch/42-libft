@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:15:31 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/02 14:47:26 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/02 19:22:55 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -497,6 +497,144 @@ void test_ft_strrchr(void)
 	printf("⚠️  Check if no char in str: String after |%c| is => %s|%s|\n", ch4, ret4, strrchr(str4, ch4));
 }
 
+int compare_strncmp(const char *s1, const char *s2, size_t n)
+{
+	return (strncmp(s1, s2, n) == ft_strncmp(s1, s2, n));
+}
+void test_ft_strncmp(void)
+{
+	printf("\n\n======== ft_strncmp ========\n");
+
+	const char test1_s1[] = "ABC";
+	const char test1_s2[] = "ABC";
+	printf("\n%s Input: %s & %s | %d = %d", (handle_test_res(compare_strncmp(test1_s1, test1_s2, 3))),
+		   test1_s1, test1_s2, strncmp(test1_s1, test1_s2, 3), ft_strncmp(test1_s1, test1_s2, 3));
+
+	const char test2_s1[] = "ABC";
+	const char test2_s2[] = "AB";
+	printf("\n%s Input: %s & %s | %d = %d", (handle_test_res(compare_strncmp(test2_s1, test2_s2, 3))),
+		   test2_s1, test2_s2, strncmp(test2_s1, test2_s2, 3), ft_strncmp(test1_s2, test2_s2, 3));
+
+	const char test3_s1[] = "AB";
+	const char test3_s2[] = "ABC";
+	printf("\n%s Input: %s & %s | %d = %d", (handle_test_res(compare_strncmp(test3_s1, test3_s2, 3))),
+		   test3_s1, test3_s2, strncmp(test3_s1, test3_s2, 3), ft_strncmp(test3_s1, test3_s2, 3));
+
+	const char test4_s1[] = "ABA";
+	const char test4_s2[] = "ABZ";
+	printf("\n%s Input: %s & %s | %d = %d", (handle_test_res(compare_strncmp(test4_s1, test4_s2, 3))),
+		   test4_s1, test4_s2, strncmp(test4_s1, test4_s2, 3), ft_strncmp(test4_s1, test4_s2, 3));
+}
+
+int compare_memchr(const void *s, int c, size_t n)
+{
+	return (!(strcmp(memchr(s, c, n), ft_memchr(s, c, n))));
+}
+
+void test_ft_memchr(void)
+{
+	const char str1[20] = "before.after.";
+	const char ch1 = '.';
+	char *ret1;
+	ret1 = ft_memchr(str1, ch1, ft_strlen((char *)str1));
+
+	const char str2[20] = "!after!";
+	const char ch2 = '!';
+	char *ret2;
+	ret2 = ft_memchr(str2, ch2, ft_strlen((char *)str2));
+
+	const char str3[20] = "be#fore#";
+	const char ch3 = '#';
+	char *ret3;
+	ret3 = ft_memchr(str3, ch3, ft_strlen((char *)str3));
+
+	const char str4[] = "https://www.somewebsite.com";
+	const char ch4 = '.';
+	char *ret4;
+	ret4 = ft_memchr(str4, ch4, ft_strlen((char *)str4));
+
+	printf("\n\n======== ft_memchr ========\n\n");
+
+	printf("%s String after |%c| is => |%s|\n", handle_test_res(compare_memchr(str1, ch1, ft_strlen((char *)str1))), ch1, ret1);
+	printf("%s String after |%c| is => |%s|\n", handle_test_res(compare_memchr(str2, ch2, ft_strlen((char *)str2))), ch2, ret2);
+	printf("%s String after |%c| is => |%s|\n", handle_test_res(compare_memchr(str3, ch3, ft_strlen((char *)str3))), ch3, ret3);
+	printf("%s String after |%c| is => |%s|\n", handle_test_res(compare_memchr(str4, ch4, ft_strlen((char *)str4))), ch4, ret4);
+}
+
+int compare_memcmp(const char *s1, const char *s2, size_t n)
+{
+	return (memcmp(s1, s2, n) == ft_memcmp(s1, s2, n));
+}
+void test_ft_memcmp(void)
+{
+	printf("\n\n======== ft_memcmp ========\n");
+
+	const char test1_s1[] = "ABC";
+	const char test1_s2[] = "ABC";
+	printf("\n%s Input: %s & %s | %d = %d", (handle_test_res(compare_memcmp(test1_s1, test1_s2, 3))),
+		   test1_s1, test1_s2, memcmp(test1_s1, test1_s2, 3), ft_memcmp(test1_s1, test1_s2, 3));
+
+	const char test2_s1[] = "ABC";
+	const char test2_s2[] = "AB";
+	printf("\n%s Input: %s & %s | %d = %d", (handle_test_res(compare_memcmp(test2_s1, test2_s2, 3))),
+		   test2_s1, test2_s2, memcmp(test2_s1, test2_s2, 3), ft_memcmp(test1_s2, test2_s2, 3));
+
+	const char test3_s1[] = "AB";
+	const char test3_s2[] = "ABC";
+	printf("\n%s Input: %s & %s | %d = %d", (handle_test_res(compare_memcmp(test3_s1, test3_s2, 3))),
+		   test3_s1, test3_s2, memcmp(test3_s1, test3_s2, 3), ft_memcmp(test3_s1, test3_s2, 3));
+
+	const char test4_s1[] = "ABA";
+	const char test4_s2[] = "ABZ";
+	printf("\n%s Input: %s & %s | %d = %d", (handle_test_res(compare_memcmp(test4_s1, test4_s2, 3))),
+		   test4_s1, test4_s2, memcmp(test4_s1, test4_s2, 3), ft_memcmp(test4_s1, test4_s2, 3));
+}
+
+// int compare_memcmp(const char *s1, const char *s2, size_t n)
+// {
+// 	return (memcmp(s1, s2, n) == ft_memcmp(s1, s2, n));
+// }
+void test_ft_strnstr(void)
+{
+	printf("\n\n======== ft_strnstr ========\n");
+
+	const char *largestring = "Foo Bar Baz";
+	const char *smallstring = "Bar";
+	char *ptr;
+	ptr = ft_strnstr(largestring, smallstring, 8);
+
+	char haystack[25] = "Hello the world exists.";
+	char needle[25] = "the world";
+	char *ptr2;
+	ptr2 = ft_strnstr(haystack, needle, 20);
+
+	char haystack1[25] = "Hello the world exists.";
+	char needle1[25] = ".";
+	char *ptr3;
+	ptr3 = ft_strnstr(haystack1, needle1, 23);
+
+	char haystack2[25] = "Hello the world exists.";
+	char needle2[25] = "!";
+	char *ptr4;
+	ptr4 = ft_strnstr(haystack2, needle2, 23);
+
+	if (strcmp("Bar Baz", ptr) == 0)
+		printf("\n✅ OK: expected: %s, got %s", "Bar Baz", ptr);
+	else
+		printf("\n❌ Try again: expected: %s, got %s", "Bar Baz", ptr);
+
+	if (strcmp("the world exists.", ptr2) == 0)
+		printf("\n✅ OK: expected: %s, got %s", "the world exists.", ptr2);
+	else
+		printf("\n❌ Try again: expected: %s, got %s", "the world exists", ptr2);
+
+	if (strcmp(".", ptr3) == 0)
+		printf("\n✅ OK: expected: %s, got %s", ".", ptr3);
+	else
+		printf("❌ Try again: expected: %s, got %s", "the world exists", ptr3);
+	printf("\n⚠️ RES should be: NULL: %s ", ptr4);
+}
+
 int main()
 {
 	printf("\n======== START ========\n");
@@ -516,6 +654,10 @@ int main()
 	test_ft_tolower();
 	test_ft_strchr();
 	test_ft_strrchr();
+	test_ft_strncmp();
+	test_ft_memchr();
+	test_ft_memcmp();
+	test_ft_strnstr();
 
 	return (0);
 }
