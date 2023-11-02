@@ -1,40 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 17:32:15 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/02 11:41:38 by akhomche         ###   ########.fr       */
+/*   Created: 2023/11/02 12:09:54 by akhomche          #+#    #+#             */
+/*   Updated: 2023/11/02 12:20:56 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+int	ft_toupper(int c)
 {
-	size_t	i;
-
-	i = 0;
-	if (size > 0)
-	{
-		while (*(src + i) != '\0')
-		{
-			if (i == size)
-			{
-				i--;
-				break ;
-			}
-			else
-			{
-				*(dst + i) = *(src + i);
-				i++;
-			}
-		}
-	}
-	*(dst + i) = '\0';
-	while (*(src + i) != '\0')
-		i++;
-	return (i);
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
+	return c;
 }

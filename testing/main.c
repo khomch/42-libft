@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:15:31 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/02 10:13:46 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/02 14:47:26 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <stddef.h>
 #include "../libft.h"
 
 void ft_putstr(char *c)
@@ -214,7 +215,7 @@ void test_ft_strlen(void)
 {
 	char *str;
 
-	printf("\n\n======== ft_isprint ========\n");
+	printf("\n\n======== ft_strlen ========\n");
 
 	str = "Hello!";
 	printf("\nInput: %s => %lu | %lu, %s", str, strlen(str), ft_strlen(str), (handle_test_res(compare_strlen(str))));
@@ -309,18 +310,191 @@ void test_ft_strlcpy(void)
 	char buffer2[19];
 	char buffer3[19];
 
-	if (ft_strlcpy(buffer1,string,19) == 18 && !strcmp(buffer1, string))
-		printf("✅ OK: expected \"%s\", got \"%s\"\n", buffer1,string);
+	if (ft_strlcpy(buffer1, string, 19) == 18 && !strcmp(buffer1, string))
+		printf("✅ OK: expected \"%s\", got \"%s\"\n", buffer1, string);
 	else
-		printf("❌ Try again: expected \"%s\", got \"%s\".\n", buffer1,string);
-	if (ft_strlcpy(buffer2,string,10) == 18 && !strcmp(buffer2, "Hello the"))
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", buffer1, string);
+	if (ft_strlcpy(buffer2, string, 10) == 18 && !strcmp(buffer2, "Hello the"))
 		printf("✅ OK: expected \"%s\", got \"%s\".\n", "Hello the", buffer2);
 	else
 		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "Hello the", buffer2);
-	if (ft_strlcpy(buffer3,string,0) == 18 && !strcmp(buffer3, ""))
+	if (ft_strlcpy(buffer3, string, 0) == 18 && !strcmp(buffer3, ""))
 		printf("✅ OK: expected \"%s\", got \"%s\".\n", "", buffer3);
 	else
 		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "", buffer3);
+}
+
+void test_ft_strlcat(void)
+{
+	printf("\n\n=========== ft_strlcat ============\n\n");
+
+	char first[] = "This is ";				   // 8
+	char last[] = "a potentially long string"; // 25
+	char buffer1[33];
+	char buffer2[33];
+	char buffer3[33];
+
+	strcpy(buffer1, first);
+	if (ft_strlcat(buffer1, last, 33) == 33 && !strcmp(buffer1, "This is a potentially long string"))
+		printf("✅ Test1: OK: expected \"%s\", got \"%s\"\n", "This is a potentially long string", buffer1);
+	else
+		printf("❌ Test1: Try again: expected \"%s\", got \"%s\".\n", "This is a potentially long string", buffer1);
+
+	strcpy(buffer2, first);
+	if (ft_strlcat(buffer2, last, 16) == 33 && !strcmp(buffer2, "This is a potent"))
+		printf("✅ Test2: OK: expected \"%s\", got \"%s\"\n", "This is a potent", buffer2);
+	else
+		printf("❌ Test2: Try again: expected \"%s\", got \"%s\".\n", "This is a potent", buffer2);
+
+	strcpy(buffer3, first);
+	if (ft_strlcat(buffer3, last, 0) == 33 && !strcmp(buffer3, "This is "))
+		printf("✅ Test2: OK: expected \"%s\", got \"%s\"\n", "This is ", buffer3);
+	else
+		printf("❌ Test2: Try again: expected \"%s\", got \"%s\".\n", "This is ", buffer3);
+}
+
+int compare_toupper(char c)
+{
+	return (toupper(c) == ft_toupper(c));
+}
+void test_ft_toupper(void)
+{
+	char c;
+
+	printf("\n\n======== ft_toupper ========\n");
+
+	c = 'a';
+	printf("\nInput: %c => %c | %c, %s", c, toupper(c), ft_toupper(c), (handle_test_res(compare_toupper(c))));
+
+	c = 't';
+	printf("\nInput: %c => %c | %c, %s", c, toupper(c), ft_toupper(c), (handle_test_res(compare_toupper(c))));
+
+	c = 'z';
+	printf("\nInput: %c => %c | %c, %s", c, toupper(c), ft_toupper(c), (handle_test_res(compare_toupper(c))));
+
+	c = 'A';
+	printf("\nInput: %c => %c | %c, %s", c, toupper(c), ft_toupper(c), (handle_test_res(compare_toupper(c))));
+
+	c = 'Y';
+	printf("\nInput: %c => %c | %c, %s", c, toupper(c), ft_toupper(c), (handle_test_res(compare_toupper(c))));
+
+	c = 'Z';
+	printf("\nInput: %c => %c | %c, %s", c, toupper(c), ft_toupper(c), (handle_test_res(compare_toupper(c))));
+
+	c = '0';
+	printf("\nInput: %c => %c | %c, %s", c, toupper(c), ft_toupper(c), (handle_test_res(compare_toupper(c))));
+
+	c = '~';
+	printf("\nInput: %c => %c | %c, %s", c, toupper(c), ft_toupper(c), (handle_test_res(compare_toupper(c))));
+
+	c = '.';
+	printf("\nInput: %c => %c | %c, %s", c, toupper(c), ft_toupper(c), (handle_test_res(compare_toupper(c))));
+}
+
+int compare_tolower(char c)
+{
+	return (tolower(c) == ft_tolower(c));
+}
+void test_ft_tolower(void)
+{
+	char c;
+
+	printf("\n\n======== ft_tolower ========\n");
+
+	c = 'a';
+	printf("\nInput: %c => %c | %c, %s", c, tolower(c), ft_tolower(c), (handle_test_res(compare_tolower(c))));
+
+	c = 't';
+	printf("\nInput: %c => %c | %c, %s", c, tolower(c), ft_tolower(c), (handle_test_res(compare_tolower(c))));
+
+	c = 'z';
+	printf("\nInput: %c => %c | %c, %s", c, tolower(c), ft_tolower(c), (handle_test_res(compare_tolower(c))));
+
+	c = 'A';
+	printf("\nInput: %c => %c | %c, %s", c, tolower(c), ft_tolower(c), (handle_test_res(compare_tolower(c))));
+
+	c = 'Y';
+	printf("\nInput: %c => %c | %c, %s", c, tolower(c), ft_tolower(c), (handle_test_res(compare_tolower(c))));
+
+	c = 'Z';
+	printf("\nInput: %c => %c | %c, %s", c, tolower(c), ft_tolower(c), (handle_test_res(compare_tolower(c))));
+
+	c = '0';
+	printf("\nInput: %c => %c | %c, %s", c, tolower(c), ft_tolower(c), (handle_test_res(compare_tolower(c))));
+
+	c = '~';
+	printf("\nInput: %c => %c | %c, %s", c, tolower(c), ft_tolower(c), (handle_test_res(compare_tolower(c))));
+
+	c = '.';
+	printf("\nInput: %c => %c | %c, %s", c, tolower(c), ft_tolower(c), (handle_test_res(compare_tolower(c))));
+}
+
+int compare_strchr(const char *s, int c)
+{
+	return (!(strcmp(strchr(s, c), ft_strchr(s, c))));
+}
+void test_ft_strchr(void)
+{
+	const char str1[20] = "before.after.";
+	const char ch1 = '.';
+	char *ret1;
+	ret1 = ft_strchr(str1, ch1);
+
+	const char str2[20] = "!after!";
+	const char ch2 = '!';
+	char *ret2;
+	ret2 = ft_strchr(str2, ch2);
+
+	const char str3[20] = "be#fore#";
+	const char ch3 = '#';
+	char *ret3;
+	ret3 = ft_strchr(str3, ch3);
+
+	const char str4[20] = "no symbol here\0";
+	const char ch4 = '#';
+	char *ret4;
+	ret4 = ft_strchr(str4, ch4);
+
+	printf("\n\n======== ft_strchr ========\n\n");
+
+	printf("%s String after |%c| is => |%s|\n", handle_test_res(compare_strchr(str1, ch1)), ch1, ret1);
+	printf("%s String after |%c| is => |%s|\n", handle_test_res(compare_strchr(str2, ch2)), ch2, ret2);
+	printf("%s String after |%c| is => |%s|\n", handle_test_res(compare_strchr(str3, ch3)), ch3, ret3);
+	printf("⚠️  Check if no char in str: String after |%c| is => %s|%s|\n", ch4, ret4, strchr(str4, ch4));
+}
+
+int compare_strrchr(const char *s, int c)
+{
+	return (!(strcmp(strrchr(s, c), ft_strrchr(s, c))));
+}
+void test_ft_strrchr(void)
+{
+	const char str1[20] = ".be.fore.after";
+	const char ch1 = '.';
+	char *ret1;
+	ret1 = ft_strrchr(str1, ch1);
+
+	const char str2[20] = "!aft!er";
+	const char ch2 = '!';
+	char *ret2;
+	ret2 = ft_strrchr(str2, ch2);
+
+	const char str3[20] = "befo#re#";
+	const char ch3 = '#';
+	char *ret3;
+	ret3 = ft_strrchr(str3, ch3);
+
+	const char str4[20] = "no symbol here\0";
+	const char ch4 = '#';
+	char *ret4;
+	ret4 = ft_strrchr(str4, ch4);
+
+	printf("\n\n======== ft_strrchr ========\n\n");
+
+	printf("%s String after |%c| is => |%s|\n", handle_test_res(compare_strrchr(str1, ch1)), ch1, ret1);
+	printf("%s String after |%c| is => |%s|\n", handle_test_res(compare_strrchr(str2, ch2)), ch2, ret2);
+	printf("%s String after |%c| is => |%s|\n", handle_test_res(compare_strrchr(str3, ch3)), ch3, ret3);
+	printf("⚠️  Check if no char in str: String after |%c| is => %s|%s|\n", ch4, ret4, strrchr(str4, ch4));
 }
 
 int main()
@@ -337,6 +511,11 @@ int main()
 	test_ft_memcpy();
 	test_ft_memmove();
 	test_ft_strlcpy();
+	test_ft_strlcat();
+	test_ft_toupper();
+	test_ft_tolower();
+	test_ft_strchr();
+	test_ft_strrchr();
 
 	return (0);
 }
