@@ -6,11 +6,16 @@
 /*   By: akhomche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:17:07 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/02 10:20:41 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/02 10:33:06 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
+
 int	main(void)
 {
+
+	printf("test");
+	
 	return (0);
 }
