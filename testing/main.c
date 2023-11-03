@@ -6,12 +6,13 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:15:31 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/02 19:22:55 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/03 12:34:33 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include <stddef.h>
@@ -631,8 +632,93 @@ void test_ft_strnstr(void)
 	if (strcmp(".", ptr3) == 0)
 		printf("\n✅ OK: expected: %s, got %s", ".", ptr3);
 	else
-		printf("❌ Try again: expected: %s, got %s", "the world exists", ptr3);
+		printf("\n✅ again: expected: %s, got %s", "the world exists", ptr3);
 	printf("\n⚠️ RES should be: NULL: %s ", ptr4);
+}
+
+int compare_atoi(const char *nptr)
+{
+	return (atoi(nptr) == ft_atoi(nptr));
+}
+
+void test_ft_atoi(void)
+{
+
+	printf("\n\n======== ft_memchr ========\n\n");
+
+	const char test1[] = "42";
+	printf("%s Input: %s| is => |%d|%d|\n", handle_test_res(compare_atoi(test1)), test1, atoi(test1), ft_atoi(test1));
+
+	const char test2[] = "0000";
+	printf("%s Input: %s| is => |%d|%d|\n", handle_test_res(compare_atoi(test2)), test2, atoi(test2), ft_atoi(test2));
+
+	const char test3[] = " -42";
+	printf("%s Input: %s| is => |%d|%d|\n", handle_test_res(compare_atoi(test3)), test3, atoi(test3), ft_atoi(test3));
+
+	const char test4[] = "   +a42 ";
+	printf("%s Input: %s| is => |%d|%d|\n", handle_test_res(compare_atoi(test4)), test4, atoi(test4), ft_atoi(test4));
+
+	const char test5[] = "    1234b567";
+	printf("%s Input: %s| is => |%d|%d|\n", handle_test_res(compare_atoi(test5)), test5, atoi(test5), ft_atoi(test5));
+
+	const char test6[] = "     2147483647";
+	printf("%s Input: %s| is => |%d|%d|\n", handle_test_res(compare_atoi(test6)), test6, atoi(test6), ft_atoi(test6));
+
+	const char test7[] = "     -2147483648";
+	printf("%s Input: %s| is => |%d|%d|\n", handle_test_res(compare_atoi(test7)), test7, atoi(test7), ft_atoi(test7));
+
+	const char test8[] = "     -2147483649";
+	printf("%s Input: %s| is => |%d|%d|\n", handle_test_res(compare_atoi(test8)), test8, atoi(test8), ft_atoi(test8));
+
+	const char test9[] = "   \t  -42";
+	printf("%s Input: %s| is => |%d|%d|\n", handle_test_res(compare_atoi(test9)), test9, atoi(test9), ft_atoi(test9));
+}
+
+void	test_ft_strdup(void)
+{
+	printf("\n\n======== ft_strdup ========\n\n");
+
+	char	tocpy[22] = "Duplication in action.";
+	char	*orcpy;
+	char	*ftcpy;
+
+	orcpy = strdup(tocpy);
+	ftcpy = ft_strdup(tocpy);
+	if (!strcmp(orcpy, ftcpy))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", orcpy, ftcpy);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", orcpy, ftcpy);
+	free(orcpy);
+	free(ftcpy);
+
+
+	orcpy = strdup(tocpy + 18);
+	ftcpy = ft_strdup(tocpy + 18);
+	if (!strcmp(orcpy, ftcpy))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", orcpy, ftcpy);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", orcpy, ftcpy);
+	free(orcpy);
+	free(ftcpy);
+
+	orcpy = strdup("Hello");
+	ftcpy = ft_strdup("Hello");
+	if (!strcmp(orcpy, ftcpy))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", orcpy, ftcpy);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", orcpy, ftcpy);
+	free(orcpy);
+	free(ftcpy);
+
+
+	orcpy = strdup("");
+	ftcpy = ft_strdup("");
+	if (!strcmp(orcpy, ftcpy))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", orcpy, ftcpy);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", orcpy, ftcpy);
+	free(orcpy);
+	free(ftcpy);
 }
 
 int main()
@@ -658,6 +744,9 @@ int main()
 	test_ft_memchr();
 	test_ft_memcmp();
 	test_ft_strnstr();
+	test_ft_strnstr();
+	test_ft_atoi();
+	test_ft_strdup();
 
 	return (0);
 }
