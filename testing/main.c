@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:15:31 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/03 12:34:33 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/03 17:33:07 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <stddef.h>
 #include "../libft.h"
 
 void ft_putstr(char *c)
@@ -721,6 +720,400 @@ void	test_ft_strdup(void)
 	free(ftcpy);
 }
 
+void	test_ft_substr(void){
+
+	printf("\n\n======== ft_substr ========\n\n");
+
+	char	srcstr[20] = "Hello World!";
+	char	*substr;
+
+	substr = ft_substr(srcstr, 6, 20);
+	if (!strcmp(srcstr + 6, substr))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", srcstr + 6, substr);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", srcstr + 6, substr);
+	free(substr);
+
+
+	substr = ft_substr(srcstr, 0, 20);
+	if (!strcmp(srcstr, substr))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", srcstr, substr);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", srcstr, substr);
+	free(substr);
+
+	substr = ft_substr(srcstr, 7, 1);
+	if (substr[0] == srcstr[7] && substr[1] == '\0')
+		printf("✅ OK: expected \"%c\", got \"%s\".\n", srcstr[7], substr);
+	else
+		printf("❌ Try again: expected \"%c\", got \"%s\".\n", srcstr[7], substr);
+	free(substr);
+
+
+	substr = ft_substr("", 7, 5);
+	if (!strcmp(substr, ""))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "", substr);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "", substr);
+	free(substr);
+
+	substr = ft_substr("Hello", 2, 0);
+	if (!strcmp(substr, ""))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "", substr);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "", substr);
+	free(substr);
+
+	substr = ft_substr("Hello", 15, 5);
+	if (!strcmp(substr, ""))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "", substr);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "", substr);
+	free(substr);
+
+	substr = ft_substr("", 0, 5);
+	if (!strcmp(substr, ""))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "", substr);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "", substr);
+	free(substr);
+}
+
+void	test_ft_strjoin(void)
+{
+	printf("\n\n=========== ft_strjoin ============\n\n");
+
+
+	char	join0[100] = "";
+	char	join1[100] = "Hello!";
+	char	join2[100] = " How are you?";
+	char	*res0 = NULL;
+	char	*res1;
+	res1 = ft_strjoin(join1, join2);
+	res0 = strcat(join1, join2);
+	if (!strcmp(res0, res1))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", res0, res1);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", res0, res1);
+	free(res1);
+
+	strcpy(join1, "Privet!");
+	res1 = ft_strjoin(join0, join1);
+	res0 = strcat(join0, join1);
+	if (!strcmp(res0, res1))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", res0, res1);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", res0, res1);
+	free(res1);
+
+	strcpy(join1, " Whats up?");
+	strcpy(join2, "");
+	res1 = ft_strjoin(join1, join2);
+	res0 = strcat(join1, join2);
+	if (!strcmp(res0, res1))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", res0, res1);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", res0, res1);
+	free(res1);
+
+	strcpy(join0, "");
+	strcpy(join1, "");
+	res1 = ft_strjoin(join0, join1);
+	res0 = strcat(join0, join1);
+	if (!strcmp(res0, res1))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", res0, res1);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", res0, res1);
+	free(res1);
+}
+
+void	test_ft_strtrim(void)
+{
+	printf("\n\n=========== ft_strtrim ============\n\n");
+
+	char	*trimmed;
+
+	trimmed = ft_strtrim("/......../.hello./////...", "./");
+	if (!strcmp("hello", trimmed))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "hello", trimmed);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "hello", trimmed);
+	free(trimmed);
+
+	trimmed = ft_strtrim("", "abcd");
+	if (!strcmp("", trimmed))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "", trimmed);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "", trimmed);
+	free(trimmed);
+
+	trimmed = ft_strtrim("hello", "");
+	if (!strcmp("hello", trimmed))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "hello", trimmed);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "hello", trimmed);
+	free(trimmed);
+
+	trimmed = ft_strtrim("hello", "l");
+	if (!strcmp("hello", trimmed))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "hello", trimmed);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "hello", trimmed);
+	free(trimmed);
+
+	trimmed = ft_strtrim("hello", "xyz");
+	if (!strcmp("hello", trimmed))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "hello", trimmed);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "hello", trimmed);
+	free(trimmed);
+
+	trimmed = ft_strtrim("llllllhellolllllll", "l");
+	if (!strcmp("hello", trimmed))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "hello", trimmed);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "hello", trimmed);
+	free(trimmed);
+
+	trimmed = ft_strtrim("llllllhellolllllll", "helo");
+	if (!strcmp("", trimmed))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "", trimmed);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "", trimmed);
+	free(trimmed);
+
+	trimmed = ft_strtrim("llllllhello/hilllllll", "helo");
+	if (!strcmp("/hi", trimmed))
+		printf("✅ OK: expected \"%s\", got \"%s\".\n", "/hi", trimmed);
+	else
+		printf("❌ Try again: expected \"%s\", got \"%s\".\n", "/hi", trimmed);
+	free(trimmed);
+}
+
+
+
+void	test_ft_split(void)
+{
+	printf("\n\n=========== ft_split ============\n\n");
+	char	**tab;
+	unsigned int	i;
+	char	s0[50] = "split         ";
+	char	s1[50] = "      split       this for   me  !";
+	char	s2[50] = "split       this for   me  !";
+	char	s3[50] = "      split       this for   me  !       ";
+
+
+	printf("---------- TEST 1 ----------\n");
+	i = 0;
+	tab = ft_split(s0, ' ');
+	printf("Test string : \"%s\".\n\n", s0);
+	if (!tab[0])
+		printf("❌ Try again.\n");
+	while (tab[i])
+	{
+		printf("Tab [%d] : \"%s\".\n", i, tab[i]);
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+
+	printf("\n---------- TEST 2 ----------\n");
+	i = 0;
+	tab = ft_split(s1, ' ');
+	printf("Test string : \"%s\".\n\n", s1);
+	if (!tab[0])
+		printf("❌ Try again.\n");
+	while (tab[i])
+	{
+		printf("Tab [%d] : \"%s\".\n", i, tab[i]);
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+
+	printf("\n---------- TEST 3 ----------\n");
+	i = 0;
+	tab = ft_split(s2, ' ');
+	printf("Test string : \"%s\".\n\n", s2);
+	if (!tab[0])
+		printf("❌ Try again.\n");
+	while (tab[i])
+	{
+		printf("Tab [%d] : \"%s\".\n", i, tab[i]);
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+
+	printf("\n---------- TEST 4 ----------\n");
+	i = 0;
+	tab = ft_split(s3, ' ');
+	printf("Test string : \"%s\".\n\n", s3);
+	if (!tab[0])
+		printf("❌ Try again.\n");
+	while (tab[i])
+	{
+		printf("Tab [%d] : \"%s\".\n", i, tab[i]);
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+
+	printf("\n---------- TEST 5 ----------\n");
+	i = 0;
+	tab = ft_split("", ' ');
+	printf("Test string : \"%s\".\n\n", "");
+	if (!tab[0])
+		printf("✅ OK: expected null, got %s.\n", tab[0]);
+	while (tab[i])
+	{
+		printf("Tab [%d] : \"%s\".\n", i, tab[i]);
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+
+	printf("\n---------- TEST 6 ----------\n");
+	i = 0;
+	tab = ft_split("split", '\0');
+	printf("Test string : \"%s\".\n\n", "split");
+	if (!tab[0])
+		printf("❌ Try again.\n");
+	while (tab[i])
+	{
+		printf("Tab [%d] : \"%s\".\n", i, tab[i]);
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+
+	printf("\n---------- TEST 7 ----------\n");
+	i = 0;
+	tab = ft_split("\0aa\0bbb", '\0');
+	printf("Test string : \"%s\".\n\n", "\\0aa\\0bbb");
+	if (!tab[0])
+		printf("✅ OK: expected null, got %s.\n", tab[0]);
+	while (tab[i])
+	{
+		printf("Tab [%d] : \"%s\".\n", i, tab[i]);
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+
+	printf("\n---------- TEST 8 ----------\n");
+	i = 0;
+	tab = ft_split("        ", ' ');
+	printf("Test string : \"%s\".\n\n", "       ");
+	if (!tab[0])
+		printf("✅ OK: expected null, got %s.\n", tab[0]);
+	while (tab[i])
+	{
+		printf("Tab [%d] : \"%s\".\n", i, tab[i]);
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+
+	printf("\n---------- TEST 9 ----------\n");
+	i = 0;
+	tab = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse", ' ');
+	printf("Test string : \"%s\".\n\n", "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse");
+	if (!tab[0])
+		printf("❌ Try again.\n");
+	while (tab[i])
+	{
+		printf("Tab [%d] : \"%s\".\n", i, tab[i]);
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+
+	printf("\n---------- TEST 10 ----------\n");
+	i = 0;
+	tab = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.", 'i');
+	printf("Test string : \"%s\" split at 'i'.\n\n", "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.");
+	if (!tab[0])
+		printf("❌ Try again.\n");
+	while (tab[i])
+	{
+		printf("Tab [%d] : \"%s\".\n", i, tab[i]);
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+
+	printf("\n---------- TEST 11 ----------\n");
+	i = 0;
+	tab = ft_split("lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.", 'z');
+	printf("Test string : \"%s\" split at 'z'.\n\n", "lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultricies diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.");
+	if (!tab[0])
+		printf("❌ Try again.\n");
+	while (tab[i])
+	{
+		printf("Tab [%d] : \"%s\".\n", i, tab[i]);
+		i++;
+	}
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
+
 int main()
 {
 	printf("\n======== START ========\n");
@@ -747,6 +1140,10 @@ int main()
 	test_ft_strnstr();
 	test_ft_atoi();
 	test_ft_strdup();
+	test_ft_substr();
+	test_ft_strjoin();
+	test_ft_strtrim();
+	test_ft_split();
 
 	return (0);
 }
