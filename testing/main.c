@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:15:31 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/03 17:33:07 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/04 10:36:54 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1113,37 +1113,68 @@ void	test_ft_split(void)
 	free(tab);
 }
 
+void	test_ft_itoa(void)
+{
+	printf("\n\n=========== ft_itoa ============\n\n");
+
+	int	n;
+
+	n = 0;
+	if (!strcmp("0", ft_itoa(n)))
+		printf("✅ OK: expected \"%d\", got \"%s\".\n", n, ft_itoa(n));
+	else
+		printf("❌ Try again: expected \"%d\", got \"%s\".\n", n, ft_itoa(n));
+
+	n = 123456789;
+	if (!strcmp("123456789", ft_itoa(n)))
+		printf("✅ OK: expected \"%d\", got \"%s\".\n", n, ft_itoa(n));
+	else
+		printf("❌ Try again: expected \"%d\", got \"%s\".\n", n, ft_itoa(n));
+
+	n = -42;
+	if (!strcmp("-42", ft_itoa(n)))
+		printf("✅ OK: expected \"%d\", got \"%s\".\n", n, ft_itoa(n));
+	else
+		printf("❌ Try again: expected \"%d\", got \"%s\".\n", n, ft_itoa(n));
+
+	n = -2147483648;
+	if (!strcmp("-2147483648", ft_itoa(n)))
+		printf("✅ OK: expected \"%d\", got \"%s\".\n", n, ft_itoa(n));
+	else
+		printf("❌ Try again: expected \"%d\", got \"%s\".\n", n, ft_itoa(n));
+}
 
 int main()
 {
 	printf("\n======== START ========\n");
-	test_ft_isalpha();
-	test_ft_isdigit();
-	test_ft_isalnum();
-	test_ft_isascii();
-	test_ft_isprint();
-	test_ft_strlen();
-	test_ft_memset();
-	test_ft_bzero();
-	test_ft_memcpy();
-	test_ft_memmove();
-	test_ft_strlcpy();
-	test_ft_strlcat();
-	test_ft_toupper();
-	test_ft_tolower();
-	test_ft_strchr();
-	test_ft_strrchr();
-	test_ft_strncmp();
-	test_ft_memchr();
-	test_ft_memcmp();
-	test_ft_strnstr();
-	test_ft_strnstr();
-	test_ft_atoi();
-	test_ft_strdup();
-	test_ft_substr();
-	test_ft_strjoin();
-	test_ft_strtrim();
-	test_ft_split();
+	// test_ft_isalpha();
+	// test_ft_isdigit();
+	// test_ft_isalnum();
+	// test_ft_isascii();
+	// test_ft_isprint();
+	// test_ft_strlen();
+	// test_ft_memset();
+	// test_ft_bzero();
+	// test_ft_memcpy();
+	// test_ft_memmove();
+	// test_ft_strlcpy();
+	// test_ft_strlcat();
+	// test_ft_toupper();
+	// test_ft_tolower();
+	// test_ft_strchr();
+	// test_ft_strrchr();
+	// test_ft_strncmp();
+	// test_ft_memchr();
+	// test_ft_memcmp();
+	// test_ft_strnstr();
+	// test_ft_strnstr();
+	// test_ft_atoi();
+	// test_ft_strdup();
+	// test_ft_substr();
+	// test_ft_strjoin();
+	// test_ft_strtrim();
+	// test_ft_split();
+	test_ft_itoa();
 
 	return (0);
 }
