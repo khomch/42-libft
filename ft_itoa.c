@@ -6,12 +6,11 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 10:25:09 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/04 12:04:47 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/04 12:08:07 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 static int	ft_intlen(long num)
 {
