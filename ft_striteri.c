@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/01 11:17:14 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/04 13:45:47 by akhomche         ###   ########.fr       */
+/*   Created: 2023/11/04 12:38:28 by akhomche          #+#    #+#             */
+/*   Updated: 2023/11/04 12:49:33 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "libft.h"
 
-void	*ft_memcpy(void *to, const void *from, size_t len)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	unsigned char	*source;
-	unsigned char	*dest;
+	size_t	len;
+	size_t	i;
 
-	source = (unsigned char *)from;
-	dest = (unsigned char *)to;
-	while (len--)
+	i = 0;
+	len = ft_strlen(s);
+
+	while (i < len)
 	{
-		*dest++ = *source++;
+		(*f)(i, &s[i]);
+		i++;
 	}
-	return (to);
 }

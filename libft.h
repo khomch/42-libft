@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/31 15:07:01 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/04 10:26:00 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:46:26 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #define		LIBFT_H
 #include	<stddef.h>
 #include	<stdlib.h>
+#include	<unistd.h>
 
 /*======== CHARS ========*/
 int		ft_isalpha(char c);
@@ -43,10 +44,18 @@ char	*ft_itoa(int n);
 /*======== MEMORY ========*/
 void	*ft_memset(void *str, int c, size_t len);
 void	ft_bzero(void *str, size_t len);
-void	*ft_memcpy(void *to, void *from, size_t len);
+void	*ft_memcpy(void *to, const void *from, size_t len);
 void	*ft_memmove(void *dest, const void *src, size_t len);
 void	*ft_calloc(size_t num, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+
+/*======== ITERATORS ========*/
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+
+/*======== WORK WITH FILE-SYSTEM ========*/
+void ft_putchar_fd(char c, int fd);
+void ft_putstr_fd(char *s, int fd);
 
 #endif

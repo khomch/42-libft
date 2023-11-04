@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:15:31 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/04 10:36:54 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/04 13:45:00 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <unistd.h>
 #include <string.h>
 #include "../libft.h"
+#include <fcntl.h>
 
 void ft_putstr(char *c)
 {
@@ -673,13 +674,13 @@ void test_ft_atoi(void)
 	printf("%s Input: %s| is => |%d|%d|\n", handle_test_res(compare_atoi(test9)), test9, atoi(test9), ft_atoi(test9));
 }
 
-void	test_ft_strdup(void)
+void test_ft_strdup(void)
 {
 	printf("\n\n======== ft_strdup ========\n\n");
 
-	char	tocpy[22] = "Duplication in action.";
-	char	*orcpy;
-	char	*ftcpy;
+	char tocpy[22] = "Duplication in action.";
+	char *orcpy;
+	char *ftcpy;
 
 	orcpy = strdup(tocpy);
 	ftcpy = ft_strdup(tocpy);
@@ -689,7 +690,6 @@ void	test_ft_strdup(void)
 		printf("❌ Try again: expected \"%s\", got \"%s\".\n", orcpy, ftcpy);
 	free(orcpy);
 	free(ftcpy);
-
 
 	orcpy = strdup(tocpy + 18);
 	ftcpy = ft_strdup(tocpy + 18);
@@ -709,7 +709,6 @@ void	test_ft_strdup(void)
 	free(orcpy);
 	free(ftcpy);
 
-
 	orcpy = strdup("");
 	ftcpy = ft_strdup("");
 	if (!strcmp(orcpy, ftcpy))
@@ -720,12 +719,13 @@ void	test_ft_strdup(void)
 	free(ftcpy);
 }
 
-void	test_ft_substr(void){
+void test_ft_substr(void)
+{
 
 	printf("\n\n======== ft_substr ========\n\n");
 
-	char	srcstr[20] = "Hello World!";
-	char	*substr;
+	char srcstr[20] = "Hello World!";
+	char *substr;
 
 	substr = ft_substr(srcstr, 6, 20);
 	if (!strcmp(srcstr + 6, substr))
@@ -733,7 +733,6 @@ void	test_ft_substr(void){
 	else
 		printf("❌ Try again: expected \"%s\", got \"%s\".\n", srcstr + 6, substr);
 	free(substr);
-
 
 	substr = ft_substr(srcstr, 0, 20);
 	if (!strcmp(srcstr, substr))
@@ -748,7 +747,6 @@ void	test_ft_substr(void){
 	else
 		printf("❌ Try again: expected \"%c\", got \"%s\".\n", srcstr[7], substr);
 	free(substr);
-
 
 	substr = ft_substr("", 7, 5);
 	if (!strcmp(substr, ""))
@@ -779,16 +777,15 @@ void	test_ft_substr(void){
 	free(substr);
 }
 
-void	test_ft_strjoin(void)
+void test_ft_strjoin(void)
 {
 	printf("\n\n=========== ft_strjoin ============\n\n");
 
-
-	char	join0[100] = "";
-	char	join1[100] = "Hello!";
-	char	join2[100] = " How are you?";
-	char	*res0 = NULL;
-	char	*res1;
+	char join0[100] = "";
+	char join1[100] = "Hello!";
+	char join2[100] = " How are you?";
+	char *res0 = NULL;
+	char *res1;
 	res1 = ft_strjoin(join1, join2);
 	res0 = strcat(join1, join2);
 	if (!strcmp(res0, res1))
@@ -827,11 +824,11 @@ void	test_ft_strjoin(void)
 	free(res1);
 }
 
-void	test_ft_strtrim(void)
+void test_ft_strtrim(void)
 {
 	printf("\n\n=========== ft_strtrim ============\n\n");
 
-	char	*trimmed;
+	char *trimmed;
 
 	trimmed = ft_strtrim("/......../.hello./////...", "./");
 	if (!strcmp("hello", trimmed))
@@ -890,18 +887,15 @@ void	test_ft_strtrim(void)
 	free(trimmed);
 }
 
-
-
-void	test_ft_split(void)
+void test_ft_split(void)
 {
 	printf("\n\n=========== ft_split ============\n\n");
-	char	**tab;
-	unsigned int	i;
-	char	s0[50] = "split         ";
-	char	s1[50] = "      split       this for   me  !";
-	char	s2[50] = "split       this for   me  !";
-	char	s3[50] = "      split       this for   me  !       ";
-
+	char **tab;
+	unsigned int i;
+	char s0[50] = "split         ";
+	char s1[50] = "      split       this for   me  !";
+	char s2[50] = "split       this for   me  !";
+	char s3[50] = "      split       this for   me  !       ";
 
 	printf("---------- TEST 1 ----------\n");
 	i = 0;
@@ -1113,11 +1107,11 @@ void	test_ft_split(void)
 	free(tab);
 }
 
-void	test_ft_itoa(void)
+void test_ft_itoa(void)
 {
 	printf("\n\n=========== ft_itoa ============\n\n");
 
-	int	n;
+	int n;
 
 	n = 0;
 	if (!strcmp("0", ft_itoa(n)))
@@ -1144,37 +1138,102 @@ void	test_ft_itoa(void)
 		printf("❌ Try again: expected \"%d\", got \"%s\".\n", n, ft_itoa(n));
 }
 
+char test_strmapi_toupper(unsigned int i, char c)
+{
+	i--;
+	return (ft_toupper(c));
+}
+
+char test_strmapi_tolower(unsigned int i, char c)
+{
+	i--;
+	return (ft_tolower(c));
+}
+
+void test_ft_strmapi(void)
+{
+	printf("\n\n=========== ft_strmapi ============\n\n");
+
+	printf("\"Input: HELLO!, expected: hello! => \"%s\"\n", ft_strmapi("HELLO!", test_strmapi_tolower));
+	printf("\"Input: world!, expected: WORLD! => \"%s\"\n", ft_strmapi("world!", test_strmapi_toupper));
+}
+
+void	test_striteri_print(unsigned int i, char *c)
+{
+	i--;
+	write(1, c, 1);
+}
+
+void	test_ft_striteri(void)
+{
+	printf("\n\n=========== ft_striteri ============\n\n");
+
+	ft_putstr("\"Should print Hello!\" => \"");
+	ft_striteri("Hello!", test_striteri_print);
+	ft_putstr("\"\n");
+	ft_putstr("\"Should print WORLD!\" => \"");
+	ft_striteri("WORLD!", test_striteri_print);
+	ft_putstr("\"\n");
+}
+
+void	test_ft_putchar_fd(void)
+{
+	printf("\n\n=========== ft_putchar_fd ============\n\n");
+
+	ft_putchar_fd('x', 1);
+	int fd = open("testputchar.txt", O_WRONLY | O_CREAT, 0777);
+	ft_putchar_fd('x', fd);
+	printf("\nCheck testputchar.txt file. Should have 'x'.\n");
+	close(fd);
+}
+
+void	test_ft_putstr_fd(void)
+{
+	printf("\n\n=========== ft_putstr_fd ============\n\n");
+
+	ft_putstr_fd("Hello World!", 1);
+	int fd0 = open("testing/testputstr.txt", O_WRONLY | O_CREAT, 0777);
+	ft_putstr_fd("Hello World!", fd0);
+	printf("\nCheck /testing/testputstr.txt file. Should have \"Hello World!\".\n");
+	close(fd0);
+}
+
+
 int main()
 {
 	printf("\n======== START ========\n");
-	// test_ft_isalpha();
-	// test_ft_isdigit();
-	// test_ft_isalnum();
-	// test_ft_isascii();
-	// test_ft_isprint();
-	// test_ft_strlen();
-	// test_ft_memset();
-	// test_ft_bzero();
-	// test_ft_memcpy();
-	// test_ft_memmove();
-	// test_ft_strlcpy();
-	// test_ft_strlcat();
-	// test_ft_toupper();
-	// test_ft_tolower();
-	// test_ft_strchr();
-	// test_ft_strrchr();
-	// test_ft_strncmp();
-	// test_ft_memchr();
-	// test_ft_memcmp();
-	// test_ft_strnstr();
-	// test_ft_strnstr();
-	// test_ft_atoi();
-	// test_ft_strdup();
-	// test_ft_substr();
-	// test_ft_strjoin();
-	// test_ft_strtrim();
-	// test_ft_split();
+	test_ft_isalpha();
+	test_ft_isdigit();
+	test_ft_isalnum();
+	test_ft_isascii();
+	test_ft_isprint();
+	test_ft_strlen();
+	test_ft_memset();
+	test_ft_bzero();
+	test_ft_memcpy();
+	test_ft_memmove();
+	test_ft_strlcpy();
+	test_ft_strlcat();
+	test_ft_toupper();
+	test_ft_tolower();
+	test_ft_strchr();
+	test_ft_strrchr();
+	test_ft_strncmp();
+	test_ft_memchr();
+	test_ft_memcmp();
+	test_ft_strnstr();
+	test_ft_strnstr();
+	test_ft_atoi();
+	test_ft_strdup();
+	test_ft_substr();
+	test_ft_strjoin();
+	test_ft_strtrim();
+	test_ft_split();
 	test_ft_itoa();
+	test_ft_strmapi();
+	test_ft_striteri();
+	test_ft_putchar_fd();
+	test_ft_putstr_fd();
 
 	return (0);
 }

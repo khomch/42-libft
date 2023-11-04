@@ -6,7 +6,7 @@
 #    By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 16:43:19 by akhomche          #+#    #+#              #
-#    Updated: 2023/11/04 10:25:53 by akhomche         ###   ########.fr        #
+#    Updated: 2023/11/04 13:13:05 by akhomche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,11 @@ SRC = ft_isalpha \
 	ft_strjoin \
 	ft_strtrim \
 	ft_split \
-	ft_itoa
+	ft_itoa \
+	ft_strmapi \
+	ft_striteri \
+	ft_putchar_fd \
+	ft_putstr_fd
 SRCS = $(addsuffix .c, $(SRC))
 OBJS = $(addsuffix .o, $(SRC))
 .c.o: $(SRCS) $(BONUS_SRCS)
