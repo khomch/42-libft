@@ -6,12 +6,13 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 15:27:53 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/03 17:32:46 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/04 10:04:06 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "libft.h"
 
 static int	word_count(char const *s, char c)
 {
@@ -29,6 +30,18 @@ static int	word_count(char const *s, char c)
 		i++;
 	}
 	return (count);
+}
+
+static void	free_memo(char **arr)
+{
+	size_t	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
 }
 
 static char	*write_word(char const *s, size_t start, size_t len)
@@ -49,18 +62,14 @@ static char	*write_word(char const *s, size_t start, size_t len)
 	return (word);
 }
 
-static char	**write_words(char const *s, char c, int words)
+static void	split_words(char **arr, char const *s, char c)
 {
 	size_t	word;
 	size_t	i;
 	size_t	j;
-	char	**arr;
 
 	word = 0;
 	i = 0;
-	arr = (char **)malloc(sizeof(char *) * (words + 1));
-	if (!arr)
-		return (NULL);
 	while (s[i])
 	{
 		if (s[i] != c)
@@ -69,12 +78,13 @@ static char	**write_words(char const *s, char c, int words)
 			while (s[i + j] != c && s[i + j] != '\0')
 				j++;
 			arr[word] = write_word(s, i, j);
+			if (arr[word] == NULL)
+				free_memo(arr);
 			word++;
 			i = i + j;
 		}
 		i++;
 	}
-	return (arr);
 }
 
 char	**ft_split(char const *s, char c)
@@ -83,34 +93,15 @@ char	**ft_split(char const *s, char c)
 	int		words;
 
 	words = word_count(s, c);
-	res = write_words(s, c, words);
+	res = (char **)malloc(sizeof(char *) * (words + 1));
 	if (!res)
 		return (NULL);
+	split_words(res, s, c);
+	if (!res)
+	{
+		free(res);
+		return (NULL);
+	}
 	res[words] = NULL;
 	return (res);
 }
-/*
-int main(void)
-{
-	char **split;
-	int	i;
-	int j;
-
-	i = 0;
-	split = ft_split("  one two   three four  ", ' ');
-	while (split[i])
-	{
-		printf("%s\n", split[i]);
-		i++;
-	}
-	
-	j = 0;
-	while (split[j])
-	{
-		free(split[j]);
-		j++;
-	}
-	free(split);
-    return (1);
-}
-*/
