@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/30 17:15:31 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/04 13:45:00 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/07 20:15:16 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1198,6 +1198,45 @@ void	test_ft_putstr_fd(void)
 	close(fd0);
 }
 
+void	test_ft_putendl_fd(void)
+{
+	printf("\n\n=========== ft_putendl_fd ============\n\n");
+
+	ft_putendl_fd("Hello World!", 1);
+	int fd1 = open("testing/testputendl.txt", O_WRONLY | O_CREAT, 0777);
+	ft_putendl_fd("Hello World!", fd1);
+	printf("\nCheck /testing/testputendl.txt file. Should have \"Hello World!\".\n");
+	close(fd1);
+}
+
+void	test_ft_putnbr_fd(void)
+{
+	printf("\n\n=========== ft_putnbr_fd ============\n\n");
+
+	ft_putstr_fd("910\t\t: ", 1);
+	ft_putnbr_fd(910, 1);
+	ft_putstr_fd("\n9\t\t: ", 1);
+	ft_putnbr_fd(9, 1);
+	ft_putstr_fd("\n123456789\t: ", 1);
+	ft_putnbr_fd(123456789, 1);
+	ft_putstr_fd("\n0\t\t: ", 1);
+	ft_putnbr_fd(0, 1);
+	ft_putstr_fd("\n-8453\t\t: ", 1);
+	ft_putnbr_fd(-8453, 1);
+	ft_putstr_fd("\n2003\t\t: ", 1);
+	ft_putnbr_fd(+2003, 1);
+	ft_putstr_fd("\n-2147483648\t: ", 1);
+	ft_putnbr_fd(-2147483648, 1);
+	ft_putstr_fd("\n2147483647\t: ", 1);
+	ft_putnbr_fd(2147483647, 1);
+	ft_putstr_fd("\n", 1);
+	int fd2 = open("testing/testputnbr.txt", O_WRONLY | O_CREAT, 0777);
+	ft_putnbr_fd(910, fd2);
+	printf("\nCheck /testing/testputnbr.txt file. Should have \"910\".\n");
+	close(fd2);
+}
+
+
 
 int main()
 {
@@ -1234,6 +1273,8 @@ int main()
 	test_ft_striteri();
 	test_ft_putchar_fd();
 	test_ft_putstr_fd();
+	test_ft_putendl_fd();
+	test_ft_putnbr_fd();
 
 	return (0);
 }
