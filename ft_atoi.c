@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 10:16:00 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/03 11:19:18 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/15 19:22:44 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,12 @@ int	ft_atoi(const char *str)
 	mult = 1;
 	while (ft_isspace(str[i]))
 		i++;
+	if (str[i] == '+' && str[i + 1] != '-')
+		i++;
 	if (str[i] == '-')
 	{
 		i++;
-		mult = mult * -1;
+		mult = -1;
 	}
 	while (str[i] && str[i] >= '0' && str[i] <= '9')
 	{

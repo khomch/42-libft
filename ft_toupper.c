@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 12:09:54 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/02 12:20:56 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:31:57 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@ int	ft_toupper(int c)
 {
 	if (c >= 'a' && c <= 'z')
 		return (c - 32);
-	return c;
+	return (c);
 }
