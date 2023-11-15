@@ -6,16 +6,11 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 12:58:00 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/07 20:24:41 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:33:52 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-// void	ft_putnbr_fd(int n, int fd)
-// {
-// 	ft_putstr_fd(ft_itoa(n), fd);
-// }
 
 void	ft_putnbr_fd(int n, int fd)
 {

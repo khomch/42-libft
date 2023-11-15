@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 17:32:15 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/02 11:41:38 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:33:01 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	size_t	len;
 
 	len = ft_strlen(src);
-	if (len + 1 < size) {
+	if (len + 1 < size)
+	{
 		ft_memcpy(dst, src, len + 1);
 	}
 	else if (size != 0)

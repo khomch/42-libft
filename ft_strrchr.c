@@ -6,17 +6,17 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 14:30:01 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/02 14:49:30 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/15 20:29:42 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char *ft_strrchr(const char *s, int c)
+char	*ft_strrchr(const char *s, int c)
 {
-	unsigned	int i;
-	char		cc;
-	char		*res;
+	unsigned int	i;
+	char			cc;
+	char			*res;
 
 	res = NULL;
 	cc = (char)c;
