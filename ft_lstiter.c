@@ -6,13 +6,13 @@
 /*   By: ax <ax@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 20:31:22 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/17 14:59:42 by ax               ###   ########.fr       */
+/*   Updated: 2023/11/18 15:27:24 by ax               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstiter(t_list *lst,void (*f)(void*))
+void	ft_lstiter(t_list *lst, void (*f)(void*))
 {
 	if (!lst || !f)
 		return ;
