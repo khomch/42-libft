@@ -6,7 +6,7 @@
 #    By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/30 16:43:19 by akhomche          #+#    #+#              #
-#    Updated: 2023/11/19 12:20:14 by akhomche         ###   ########.fr        #
+#    Updated: 2023/11/19 18:23:10 by akhomche         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,8 +64,8 @@ OBJS = $(addsuffix .o, $(SRC))
 BONUS_SRCS = $(addsuffix .c, $(BONUS_SRC))
 BONUS_OBJS = $(addsuffix .o, $(BONUS_SRC))
 
-.c.o: $(SRCS) $(BONUS_SRCS)
-	$(CC) $(CFLAGS) -c -o $@ $<
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
 	$(AR) $@ $^
