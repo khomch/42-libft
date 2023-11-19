@@ -6,7 +6,7 @@
 /*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 14:53:43 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/03 15:23:22 by akhomche         ###   ########.fr       */
+/*   Updated: 2023/11/19 12:31:27 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	size_t	r;
 	size_t	i;
 
+	if (!s1)
+		return (NULL);
 	r = ft_strlen(s1);
 	l = 0;
 	while (l < r && is_in_set(set, s1[l]))

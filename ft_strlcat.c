@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ax <ax@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: akhomche <akhomche@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/02 10:17:07 by akhomche          #+#    #+#             */
-/*   Updated: 2023/11/18 15:46:08 by ax               ###   ########.fr       */
+/*   Updated: 2023/11/19 11:53:37 by akhomche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,23 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	src_len;
-	size_t	dst_len;
+	size_t	i;
+	size_t	j;
 
-	src_len = ft_strlen(src);
-	dst_len = ft_strlen(dst);
-	if (dst_len >= dstsize)
-		dst_len = dstsize;
-	if (dst_len == dstsize)
-		return (dstsize + src_len);
-	if (src_len < dstsize - dst_len)
-		ft_memcpy(dst + dst_len, src, src_len + 1);
-	else
+	i = 0;
+	j = 0;
+	while (i < dstsize && dst[i])
 	{
-		ft_memcpy(dst + dst_len, src, dstsize - dst_len - 1);
-		dst[dstsize - 1] = '\0';
+		i++;
 	}
-	return (dst_len + src_len);
+	while ((i + j + 1) < dstsize && src[j])
+	{
+		dst[i + j] = src[j];
+		j++;
+	}
+	if (i != dstsize)
+	{
+		dst[i + j] = '\0';
+	}
+	return (i + ft_strlen(src));
 }
