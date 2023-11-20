@@ -1,2 +1,2 @@
-# My implementation of C standart library
+# My implementation of C standard library
 Scored 125
